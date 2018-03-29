@@ -70,6 +70,15 @@ RUN mkdir -p /var/run/redis && \
     service openvas-manager stop && \
     service openvas-gsa stop && \
     service redis-server stop
+    
+RUN apt-get update
+RUN apt-get install openssh-server
+
+RUN mkdir /var/run/sshd
+RUN chmod 0755 /var/run/sshd /usr/sbin/sshd
+
+RUN useradd --create-home --shell /bin/bash --groups sudo admin ## includes 'sudo' 
+RUN echo "admin:admin" | chpasswd ## Enter a password
 
 CMD /start
 EXPOSE 443 9390
