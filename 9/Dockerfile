@@ -82,4 +82,4 @@ RUN echo "admin:admin" | chpasswd ## Enter a password
 
 CMD /start
 EXPOSE 443 9390
-ENTRYPOINT service ssh restart 
+ENTRYPOINT /etc/init.d/ssh start 
